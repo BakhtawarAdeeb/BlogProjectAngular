@@ -1,0 +1,93 @@
+
+<div class="col-md-12">
+    <div class="card card-container">
+      <form
+      *ngIf="!isSuccessful"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      >
+      <fieldset class="form-group">
+        <label for="username">Username</label>
+        <input
+           formControlName="username"
+            placeholder="Username"
+            class="form-control form-control-lg"
+            type="text"
+            id="username" 
+            required
+            minlength="5">
+      
+        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="alert alert-danger">
+        
+          <div *ngIf="username.errors?.['required']">
+            Username is required.
+          </div>
+          <div *ngIf="username.errors?.['minlength']">
+            Username must be at least 5 characters long.
+          </div>
+          <div *ngIf="username.errors?.['pattern']">
+            Username must contain alphabets only.
+          </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="email">Email</label>
+        <input
+            formControlName="email"
+            placeholder="Email"
+            class="form-control form-control-lg"
+            type="text" 
+            id="email"
+            required/>
+
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="alert alert-danger">
+         <div *ngIf="email.errors?.['required']">
+            Email is required.
+          </div>
+          <div *ngIf="email.errors?.['pattern']">
+            Email must be in correct format.
+          </div>
+        </div>
+
+
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="password">Password</label>
+        <input
+            formControlName="password"
+            placeholder="Password"
+            class="form-control form-control-lg"
+            type="password" 
+            id="password"
+            required
+            minlength="8"/>
+            
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="alert alert-danger">
+         <div *ngIf="password.errors?.['required']">
+            Password is required.
+          </div>
+          <div *ngIf="password.errors?.['minlength']">
+            Password must be at least 8 characters long.
+          </div>
+        </div>
+    </fieldset>
+    
+    <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+        Submit
+    </button>
+
+</form>
+  
+      <div class="alert alert-warning" *ngIf=" isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>    
+      <div class="alert alert-success" *ngIf="isSuccessful">
+          Your registration is successful! Please Login.
+      </div>
+    </div>
+  </div>
