@@ -1,0 +1,19 @@
+<div class = "container mt-5">
+    <div class = "row col-lg-12 col-sm-12">
+        <table class = "table table-striped">
+            <thead>
+                <tr class="bg-info text-light">
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let user of users ">
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td><button class = "btn btn-danger" (click) = "removeUser(user.username)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
