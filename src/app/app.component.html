@@ -1,0 +1,53 @@
+<div id="app">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a  class="navbar-brand">Blogger Site</a>
+    <div class="container-fluid">
+      <ul class="nav nav-pills" routerLinkActive="active">
+
+        <li role="presentation">
+          <a  class="nav-link"  routerLink="all-users" *ngIf="isAdmin">All Users</a>
+        </li>
+
+        <li role="presentation">
+          <a  class="nav-link" *ngIf="isLoggedIn" routerLink="my-posts">My Posts</a>
+        </li>
+
+        <li role="presentation">
+          <a  class="nav-link" *ngIf="isLoggedIn" routerLink="addpost">Add Post</a>
+        </li>
+
+        <li  role="presentation">
+          <a  class="nav-link" routerLink="allposts">All Posts</a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div class="container-fluid">
+      <ul class="nav nav-pills" *ngIf="!isLoggedIn">
+        <li  role="presentation">
+          <a  class="nav-link" routerLink="register">Sign Up</a>
+        </li>
+        <li role="presentation">
+          <a  class="nav-link" routerLink="login">Login</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container-fluid">
+      <ul class="nav nav-pills" *ngIf="isLoggedIn">
+        <li role="presentation">
+          <a  class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li  role="presentation">
+          <a  class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+      </ul>
+   </div>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+ 
+</div>
