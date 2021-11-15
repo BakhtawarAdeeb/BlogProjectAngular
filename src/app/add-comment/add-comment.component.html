@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12">
+            <h4 class = "mt-3 mb-3">Add New Comment</h4>
+            <form *ngIf="!isSuccessful"
+            [formGroup]="form"
+            (ngSubmit)="commentNow()"
+            >
+            
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <input class="form-control form-control-lg" 
+                        type="text" 
+                        formControlName="comment" 
+                        name="comment" 
+                        id="comment"
+                        required
+                        placeholder="Enter Comment" />
+
+                        <div *ngIf="comment.invalid && (comment.dirty || comment.touched)"
+                        class="alert alert-danger">
+                    
+                      <div *ngIf="comment.errors?.['required']">
+                        Comment is required.
+                      </div>
+                      
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block">Add Comment</button>
+                      </div>
+
+                    <div class="alert alert-warning" *ngIf="isPostFailed">
+                        Adding comment failed!<br />{{ errorMessage }}
+                    </div>
+                
+            </form>
+                
+             <div class="alert alert-success" *ngIf="isSuccessful">
+                    Comment added successfully!
+             </div>       
+        </div>
+
+    </div>
+</div>
