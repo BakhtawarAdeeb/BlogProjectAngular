@@ -1,0 +1,69 @@
+<div class="col-md-12">
+    <div class="card card-container">
+      <form
+        *ngIf="!isLoggedIn"
+        [formGroup]="form"
+        (ngSubmit)=" onSubmit()"
+        
+      >
+      <fieldset class="form-group">
+        <label for="username">Username</label>
+        <input
+           formControlName="username"
+            placeholder="Username"
+            class="form-control form-control-lg"
+            type="text"
+            id="username" 
+            required>
+      
+        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="alert alert-danger">
+        
+          <div *ngIf="username.errors?.['required']">
+            Username is required.
+          </div>
+
+        </div>
+       </fieldset>
+
+       <fieldset class="form-group">
+        <label for="password">Password</label>
+          <input
+              formControlName="password"
+              placeholder="Password"
+              class="form-control form-control-lg"
+              type="password" 
+              id="password"
+              required/>
+              
+          <div *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="alert alert-danger">
+           <div *ngIf="password.errors?.['required']">
+              Password is required.
+            </div>
+            
+          </div>
+      </fieldset>
+      
+     <button class="btn btn-primary btn-block" type="submit">
+        Login
+      </button>
+       </form>  
+
+
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf=" isLoginFailed"
+          >
+            Login failed: {{ errorMessage }}
+          </div>
+        </div>
+      
+  
+      <div class="alert alert-success" *ngIf="isLoggedIn">
+        Logged in as {{ roles }}.
+      </div>
+    </div>
+  </div>
