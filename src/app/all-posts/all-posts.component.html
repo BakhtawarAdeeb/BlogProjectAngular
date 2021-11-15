@@ -1,10 +1,18 @@
 <div class="list-group">
-  <div class="d-flex w-100 justify-content-between">
-    <b class="mb-1">Post Comments:</b>
-  </div>
-  <div class="list-group-item list-group-item-action flex-column"
-  *ngFor = "let comment of comments">
-    <div class="d-flex w-100 justify-content-between">
-     {{comment.comment}}
-    </div>
- </div></div>
+    <div class="list-group-item list-group-item-action flex-column"
+    *ngFor = "let post of posts">
+      <div class="d-flex w-100 justify-content-between">
+        <h3 class="mb-1">{{post.title}}</h3>
+      </div>
+      <p class="mb-1">{{post.description}}</p>
+    <div *ngIf="isLoggedIn">
+    <app-view-post-comments [post]=post.id>
+    </app-view-post-comments>
+   
+    <button  class="btn btn-primary" routerLink="/add-comment/{{post.id }}">Add Comment </button>
+    <button *ngIf="isAdmin" class="btn btn-primary" routerLink="/edit-post/{{post.id }}">Edit </button>
+    <button *ngIf="isAdmin" class = "btn btn-danger" (click) = "removeMyPost(post.id)">Delete</button>
+    
+  
+  </div></div></div>
+
