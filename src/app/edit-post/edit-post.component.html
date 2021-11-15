@@ -1,0 +1,50 @@
+<div style="width: 400px; margin: auto;">
+    <div *ngIf="currentPost" class="edit-form">
+      <h4>Edit Post</h4>
+      <form
+            [formGroup]="form"
+            (ngSubmit)="updatePost()" >
+
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input required type="text" formControlName="title" name="title" id="title"
+                            class="form-control form-control-lg" minlength="3" placeholder="Enter title" />
+                            <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                            class="alert alert-danger">
+                        
+                          <div *ngIf="title.errors?.['required']">
+                           Title is required.
+                          </div>
+                          <div *ngIf="title.errors?.['minlength']">
+                            Title must be at least 3 characters long.
+                          </div>
+                          
+                    </div>
+                    
+                        </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input class="form-control  form-control-lg" type="text" formControlName="description" name="description" id="description" required
+                            placeholder="Enter description" />
+                            <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="description.errors?.['required']">
+                                Description is required.
+                               </div>
+                            </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-block">Update Post</button>
+                  
+                
+            </form>
+  
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentPost">
+      <br />
+      <p>Cannot access this Post...</p>
+    </div>
+  </div>
